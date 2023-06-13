@@ -4,5 +4,6 @@ defmodule Core.Account.Registry do
   entries do
     entry Core.Account.User
     entry Core.Account.Token
+    entry Core.Account.Follow
   end
 end

@@ -3,9 +3,20 @@ defmodule RunBook do
   alias Core.SNS
   alias Core.Account
 
-  def publish_feed_item!(text \\ "blah blah") do
+  def clean() do
+    Account.User
+    |> Account.read!()
+    |> Enum.each(&Account.destroy!/1)
+  end
+
+  def publish_feed_item!(opts \\ []) do
+    defaults = [text: "blah blah"]
+    attr =
+      Keyword.merge(defaults, opts)
+      |> Enum.into(%{})
+
     SNS.FeedItem
-    |> Changeset.for_create(:publish, %{text: text})
+    |> Changeset.for_create(:publish, attr)
     |> SNS.create!()
   end
 
@@ -31,18 +42,28 @@ defmodule RunBook do
     |> Changeset.for_create(:register, attr)
     |> Account.create!()
   end
+
+  def follow(follower = %Account.User{}, followee = %Account.User{}) do
+    Account.Follow.follow!(follower.id, followee.id)
+  end
 end
 
 require Ash.Query
 import RunBook
 alias Ash.Query
-alias Core.SNS
-alias Core.SNS.{FeedItem, SubFeedItem, User}
+alias Core.{Account, SNS}
+alias Core.SNS.{FeedItem, SubFeedItem}
+alias Core.Account.User
 
-feed_item = publish_feed_item!()
+clean()
+
+follower = register_user!()
+followee = register_user!(email: "followee@aidkr.com")
+follow(followee, follower)
+feed_item = publish_feed_item!(author_id: follower.id)
 sub_feed_items = [
   publish_sub_feed_item!(feed_item.id),
   publish_sub_feed_item!(feed_item.id),
   publish_sub_feed_item!(feed_item.id)
 ]
-user = register_user!()
+[follower, followee] = Account.load!([follower, followee], [:followers, :followees])

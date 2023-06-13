@@ -15,6 +15,9 @@ defmodule Core.Account.User do
     strategies do
       password :password do
         identity_field :email
+        hashed_password_field :hashed_password
+        confirmation_required? false
+        register_action_name :register
       end
     end
 
@@ -39,5 +42,21 @@ defmodule Core.Account.User do
   postgres do
     table "user"
     repo Core.Repo
+  end
+
+  relationships do
+    has_many :published_feed_items, Core.SNS.FeedItem,
+      destination_attribute: :author_id,
+      api: Core.SNS
+
+    many_to_many :followers, Core.Account.User,
+      through: Core.Account.Follow,
+      source_attribute_on_join_resource: :followee_id,
+      destination_attribute_on_join_resource: :follower_id
+
+    many_to_many :followees, Core.Account.User,
+      through: Core.Account.Follow,
+      source_attribute_on_join_resource: :follower_id,
+      destination_attribute_on_join_resource: :followee_id
   end
 end

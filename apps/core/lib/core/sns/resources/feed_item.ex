@@ -7,6 +7,10 @@ defmodule Core.SNS.FeedItem do
 
     create :publish do
       accept [:text]
+
+      argument :author_id, :uuid, allow_nil?: false
+
+      change manage_relationship(:author_id, :author, type: :append_and_remove)
     end
 
     update :set_private do
@@ -45,6 +49,7 @@ defmodule Core.SNS.FeedItem do
   end
 
   relationships do
+    belongs_to :author, Core.Account.User, allow_nil?: false, api: Core.Account
     has_many :sub_feed_items, Core.SNS.SubFeedItem
   end
 
