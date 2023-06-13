@@ -17,4 +17,7 @@ import Config
 #       metadata: [:user_id]
 #
 config :ash, :use_all_identities_in_manage_relationship?, false
-config :core, :ash_apis, [Core.SNS]
+config :core, :ash_apis, [Core.SNS, Core.Account]
+config :core, ecto_repos: [Core.Repo]
+
+import_config "#{config_env()}.exs"

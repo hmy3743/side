@@ -1,6 +1,7 @@
 defmodule RunBook do
   alias Ash.Changeset
   alias Core.SNS
+  alias Core.Account
 
   def publish_feed_item!(text \\ "blah blah") do
     SNS.FeedItem
@@ -19,13 +20,24 @@ defmodule RunBook do
     |> Changeset.for_create(:publish, %{text: text, feed_item_id: feed_item_id})
     |> SNS.create!()
   end
+
+  def register_user!(opts \\ []) do
+    defaults = [name: "Noel", email: "noel@aidkr.com", password: "password"]
+    attr =
+      Keyword.merge(defaults, opts)
+      |> Enum.into(%{})
+
+    Account.User
+    |> Changeset.for_create(:register, attr)
+    |> Account.create!()
+  end
 end
 
 require Ash.Query
 import RunBook
 alias Ash.Query
 alias Core.SNS
-alias Core.SNS.{FeedItem, SubFeedItem}
+alias Core.SNS.{FeedItem, SubFeedItem, User}
 
 feed_item = publish_feed_item!()
 sub_feed_items = [
@@ -33,5 +45,4 @@ sub_feed_items = [
   publish_sub_feed_item!(feed_item.id),
   publish_sub_feed_item!(feed_item.id)
 ]
-
-result = FeedItem.read!(query: Query.filter(FeedItem, text == "blah blah"))
+user = register_user!()

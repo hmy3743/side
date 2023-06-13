@@ -18,6 +18,7 @@ defmodule Core.SNS.SubFeedItem do
 
   attributes do
     uuid_primary_key :id
+
     attribute :text, :string do
       allow_nil? false
     end

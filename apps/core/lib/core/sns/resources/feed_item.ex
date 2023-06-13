@@ -30,11 +30,13 @@ defmodule Core.SNS.FeedItem do
 
   attributes do
     uuid_primary_key :id
+
     attribute :text, :string do
       allow_nil? false
     end
+
     attribute :expose_scope, :atom do
-      constraints [one_of: [:public, :friends, :private]]
+      constraints one_of: [:public, :friends, :private]
 
       default :public
 
