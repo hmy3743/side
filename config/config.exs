@@ -17,3 +17,4 @@ import Config
 #       metadata: [:user_id]
 #
 config :ash, :use_all_identities_in_manage_relationship?, false
+config :core, :ash_apis, [Core.SNS]
