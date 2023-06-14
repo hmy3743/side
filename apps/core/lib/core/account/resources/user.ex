@@ -66,5 +66,11 @@ defmodule Core.Account.User do
       through: Core.Account.Follow,
       source_attribute_on_join_resource: :follower_id,
       destination_attribute_on_join_resource: :followee_id
+
+    many_to_many :feeds, Core.SNS.FeedItem,
+      through: Core.SNS.Feed,
+      source_attribute_on_join_resource: :owner_id,
+      destination_attribute_on_join_resource: :feed_item_id,
+      api: Core.SNS
   end
 end

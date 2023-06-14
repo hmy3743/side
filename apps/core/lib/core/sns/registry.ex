@@ -4,5 +4,6 @@ defmodule Core.SNS.Registry do
   entries do
     entry Core.SNS.FeedItem
     entry Core.SNS.SubFeedItem
+    entry Core.SNS.Feed
   end
 end

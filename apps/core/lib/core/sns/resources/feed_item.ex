@@ -3,15 +3,30 @@ defmodule Core.SNS.FeedItem do
     data_layer: Ash.DataLayer.Ets
 
   actions do
-    defaults [:create, :read, :update, :destroy]
+    defaults [:read, :update, :destroy]
 
-    create :publish do
+    create :create do
       accept [:text]
 
       argument :author_id, :uuid, allow_nil?: false
       argument :expose_scope, :atom, allow_nil?: false, default: :public
 
       change manage_relationship(:author_id, :author, type: :append_and_remove)
+    end
+
+    action :publish, nil do
+      argument :text, :string, allow_nil?: false
+      argument :author_id, :uuid, allow_nil?: false
+      argument :expose_scope, :atom, allow_nil?: false, default: :public
+
+      run(fn %{arguments: %{text: text, author_id: author_id, expose_scope: expose_scope}}, _context ->
+        feed_item = __MODULE__.create!(text, author_id, expose_scope)
+        %{author: %{followers: followers} = author} = Core.SNS.load!(feed_item, [author: :followers])
+        Enum.each(followers, fn follower ->
+          Core.SNS.Feed.create!(follower.id, feed_item.id)
+        end)
+        {:ok, feed_item}
+      end)
     end
 
     update :set_private do
@@ -59,6 +74,7 @@ defmodule Core.SNS.FeedItem do
     define_for Core.SNS
 
     define :read, args: []
+    define :create, args: [:text, :author_id, {:optional, :expose_scope}]
     define :publish, args: [:text, :author_id, {:optional, :expose_scope}]
     define :set_private, args: []
     define :set_friends, args: []

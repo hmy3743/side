@@ -60,11 +60,16 @@ clean()
 
 follower = register_user!()
 followee = register_user!(email: "followee@aidkr.com")
-follow(followee, follower)
-feed_item = publish_feed_item!(author_id: follower.id)
-sub_feed_items = [
-  publish_sub_feed_item!(feed_item_id: feed_item.id, author_id: followee.id),
-  publish_sub_feed_item!(feed_item_id: feed_item.id, author_id: followee.id),
-  publish_sub_feed_item!(feed_item_id: feed_item.id, author_id: followee.id)
-]
-[follower, followee] = Account.load!([follower, followee], [:followers, :followees])
+follow(follower, followee)
+feed_item = publish_feed_item!(author_id: followee.id)
+# sub_feed_items = [
+#   publish_sub_feed_item!(feed_item_id: feed_item.id, author_id: follower.id),
+#   publish_sub_feed_item!(feed_item_id: feed_item.id, author_id: follower.id),
+#   publish_sub_feed_item!(feed_item_id: feed_item.id, author_id: follower.id)
+# ]
+# [follower, followee] = Account.load!([follower, followee], [:followers, :followees, :feeds])
+
+%{author: %{followers: fw}} = SNS.load!(feed_item, [author: :followers])
+%{author: %{followers: fw_lazy}} = SNS.load!(feed_item, [author: :followers], lazy?: true)
+IO.inspect({fw, fw_lazy})
+IO.inspect(fw == fw_lazy)
