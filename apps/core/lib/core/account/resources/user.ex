@@ -5,8 +5,12 @@ defmodule Core.Account.User do
 
   attributes do
     uuid_primary_key :id
+
     attribute :email, :ci_string, allow_nil?: false
     attribute :hashed_password, :string, allow_nil?: false, sensitive?: true
+
+    create_timestamp :inserted_at
+    update_timestamp :updated_at
   end
 
   authentication do
@@ -46,6 +50,10 @@ defmodule Core.Account.User do
 
   relationships do
     has_many :published_feed_items, Core.SNS.FeedItem,
+      destination_attribute: :author_id,
+      api: Core.SNS
+
+    has_many :published_sub_feed_items, Core.SNS.SubFeedItem,
       destination_attribute: :author_id,
       api: Core.SNS
 

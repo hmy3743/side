@@ -10,14 +10,12 @@ defmodule RunBook do
   end
 
   def publish_feed_item!(opts \\ []) do
-    defaults = [text: "blah blah"]
-    attr =
+    defaults = [text: "blah blah", expose_scope: :public]
+    %{text: text, author_id: author_id, expose_scope: expose_scope} =
       Keyword.merge(defaults, opts)
       |> Enum.into(%{})
 
-    SNS.FeedItem
-    |> Changeset.for_create(:publish, attr)
-    |> SNS.create!()
+    SNS.FeedItem.publish!(text, author_id, expose_scope)
   end
 
   def destroy_feed_item!(feed_item) do
@@ -26,10 +24,13 @@ defmodule RunBook do
     |> SNS.destroy!()
   end
 
-  def publish_sub_feed_item!(feed_item_id, text \\ "blah blah") do
-    SNS.SubFeedItem
-    |> Changeset.for_create(:publish, %{text: text, feed_item_id: feed_item_id})
-    |> SNS.create!()
+  def publish_sub_feed_item!(opts \\ []) do
+    defaults = [text: "blah blah"]
+    %{text: text, feed_item_id: feed_item_id, author_id: author_id} =
+      Keyword.merge(defaults, opts)
+      |> Enum.into(%{})
+
+    SNS.SubFeedItem.publish!(text, feed_item_id, author_id)
   end
 
   def register_user!(opts \\ []) do
@@ -62,8 +63,8 @@ followee = register_user!(email: "followee@aidkr.com")
 follow(followee, follower)
 feed_item = publish_feed_item!(author_id: follower.id)
 sub_feed_items = [
-  publish_sub_feed_item!(feed_item.id),
-  publish_sub_feed_item!(feed_item.id),
-  publish_sub_feed_item!(feed_item.id)
+  publish_sub_feed_item!(feed_item_id: feed_item.id, author_id: followee.id),
+  publish_sub_feed_item!(feed_item_id: feed_item.id, author_id: followee.id),
+  publish_sub_feed_item!(feed_item_id: feed_item.id, author_id: followee.id)
 ]
 [follower, followee] = Account.load!([follower, followee], [:followers, :followees])

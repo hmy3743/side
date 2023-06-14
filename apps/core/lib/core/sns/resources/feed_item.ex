@@ -9,6 +9,7 @@ defmodule Core.SNS.FeedItem do
       accept [:text]
 
       argument :author_id, :uuid, allow_nil?: false
+      argument :expose_scope, :atom, allow_nil?: false, default: :public
 
       change manage_relationship(:author_id, :author, type: :append_and_remove)
     end
@@ -41,11 +42,12 @@ defmodule Core.SNS.FeedItem do
 
     attribute :expose_scope, :atom do
       constraints one_of: [:public, :friends, :private]
-
       default :public
-
       allow_nil? false
     end
+
+    create_timestamp :inserted_at
+    update_timestamp :updated_at
   end
 
   relationships do
@@ -56,7 +58,10 @@ defmodule Core.SNS.FeedItem do
   code_interface do
     define_for Core.SNS
 
-    define :publish, args: [:text]
     define :read, args: []
+    define :publish, args: [:text, :author_id, {:optional, :expose_scope}]
+    define :set_private, args: []
+    define :set_friends, args: []
+    define :set_public, args: []
   end
 end

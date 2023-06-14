@@ -26,6 +26,8 @@ defmodule Core.Account.Follow do
       primary_key? true
       allow_nil? false
     end
+
+    create_timestamp :inserted_at
   end
 
   relationships do
