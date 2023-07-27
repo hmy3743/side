@@ -19,12 +19,17 @@ defmodule Core.SNS.FeedItem do
       argument :author_id, :uuid, allow_nil?: false
       argument :expose_scope, :atom, allow_nil?: false, default: :public
 
-      run(fn %{arguments: %{text: text, author_id: author_id, expose_scope: expose_scope}}, _context ->
+      run(fn %{arguments: %{text: text, author_id: author_id, expose_scope: expose_scope}},
+             _context ->
         feed_item = __MODULE__.create!(text, author_id, expose_scope)
-        %{author: %{followers: followers} = author} = Core.SNS.load!(feed_item, [author: :followers])
+
+        %{author: %{followers: followers} = author} =
+          Core.SNS.load!(feed_item, author: :followers)
+
         Enum.each(followers, fn follower ->
           Core.SNS.Feed.create!(follower.id, feed_item.id)
         end)
+
         {:ok, feed_item}
       end)
     end

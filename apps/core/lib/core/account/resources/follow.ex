@@ -11,10 +11,14 @@ defmodule Core.Account.Follow do
 
       run(fn %{arguments: %{follower_id: follower_id, followee_id: followee_id}}, _context ->
         follow = __MODULE__.create!(follower_id, followee_id)
-        %{followee: %{published_feed_items: feed_items}} = Core.Account.load!(follow, [followee: :published_feed_items])
+
+        %{followee: %{published_feed_items: feed_items}} =
+          Core.Account.load!(follow, followee: :published_feed_items)
+
         Enum.each(feed_items, fn feed_item ->
           Core.SNS.Feed.create!(follower_id, feed_item.id)
         end)
+
         {:ok, follow}
       end)
     end
