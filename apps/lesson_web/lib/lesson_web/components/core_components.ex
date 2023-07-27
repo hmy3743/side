@@ -1,4 +1,4 @@
-defmodule LessonWebWeb.CoreComponents do
+defmodule LessonWeb.CoreComponents do
   @moduledoc """
   Provides core UI components.
 
@@ -17,7 +17,7 @@ defmodule LessonWebWeb.CoreComponents do
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
-  import LessonWebWeb.Gettext
+  import LessonWeb.Gettext
 
   @doc """
   Renders a modal.
@@ -625,9 +625,9 @@ defmodule LessonWebWeb.CoreComponents do
     # with our gettext backend as first argument. Translations are
     # available in the errors.po file (as we use the "errors" domain).
     if count = opts[:count] do
-      Gettext.dngettext(LessonWebWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(LessonWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(LessonWebWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(LessonWeb.Gettext, "errors", msg, opts)
     end
   end
 

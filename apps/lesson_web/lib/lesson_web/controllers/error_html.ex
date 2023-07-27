@@ -1,5 +1,5 @@
-defmodule LessonWebWeb.ErrorHTML do
-  use LessonWebWeb, :html
+defmodule LessonWeb.ErrorHTML do
+  use LessonWeb, :html
 
   # If you want to customize your error pages,
   # uncomment the embed_templates/1 call below

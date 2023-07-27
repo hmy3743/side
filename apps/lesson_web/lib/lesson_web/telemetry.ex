@@ -1,4 +1,4 @@
-defmodule LessonWebWeb.Telemetry do
+defmodule LessonWeb.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -63,7 +63,7 @@ defmodule LessonWebWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {LessonWebWeb, :count_users, []}
+      # {LessonWeb, :count_users, []}
     ]
   end
 end

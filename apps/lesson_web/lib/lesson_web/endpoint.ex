@@ -1,4 +1,4 @@
-defmodule LessonWebWeb.Endpoint do
+defmodule LessonWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :lesson_web
 
   # The session will be stored in the cookie and signed,
@@ -21,7 +21,7 @@ defmodule LessonWebWeb.Endpoint do
     at: "/",
     from: :lesson_web,
     gzip: false,
-    only: LessonWebWeb.static_paths()
+    only: LessonWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -46,5 +46,5 @@ defmodule LessonWebWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug LessonWebWeb.Router
+  plug LessonWeb.Router
 end

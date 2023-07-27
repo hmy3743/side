@@ -20,4 +20,44 @@ config :ash, :use_all_identities_in_manage_relationship?, false
 config :core, :ash_apis, [Core.SNS, Core.Account, Lesson]
 config :core, ecto_repos: [Core.Repo]
 
+# Configures the endpoint
+config :lesson_web, LessonWeb.Endpoint,
+  url: [host: "localhost"],
+  render_errors: [
+    formats: [html: LessonWeb.ErrorHTML, json: LessonWeb.ErrorJSON],
+    layout: false
+  ],
+  pubsub_server: LessonWeb.PubSub,
+  live_view: [signing_salt: "GX/IE77G"]
+
+# Configure esbuild (the version is required)
+config :esbuild,
+  version: "0.17.11",
+  lesson_web: [
+    args:
+      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+    cd: Path.expand("../apps/lesson_web/assets", __DIR__),
+    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ]
+
+# Configure tailwind (the version is required)
+config :tailwind,
+  version: "3.2.7",
+  lesson_web: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/app.css
+      --output=../priv/static/assets/app.css
+    ),
+    cd: Path.expand("../apps/lesson_web/assets", __DIR__)
+  ]
+
+# Configures Elixir's Logger
+config :logger, :console,
+  format: "$time $metadata[$level] $message\n",
+  metadata: [:request_id]
+
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
+
 import_config "#{config_env()}.exs"

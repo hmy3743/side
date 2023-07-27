@@ -1,11 +1,11 @@
-defmodule LessonWebWeb.Router do
-  use LessonWebWeb, :router
+defmodule LessonWeb.Router do
+  use LessonWeb, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {LessonWebWeb.Layouts, :root}
+    plug :put_root_layout, {LessonWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -14,14 +14,14 @@ defmodule LessonWebWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", LessonWebWeb do
+  scope "/", LessonWeb do
     pipe_through :browser
 
     get "/", PageController, :home
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", LessonWebWeb do
+  # scope "/api", LessonWeb do
   #   pipe_through :api
   # end
 
@@ -37,7 +37,7 @@ defmodule LessonWebWeb.Router do
     scope "/dev" do
       pipe_through :browser
 
-      live_dashboard "/dashboard", metrics: LessonWebWeb.Telemetry
+      live_dashboard "/dashboard", metrics: LessonWeb.Telemetry
     end
   end
 end

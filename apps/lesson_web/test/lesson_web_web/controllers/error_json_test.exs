@@ -1,12 +1,12 @@
-defmodule LessonWebWeb.ErrorJSONTest do
-  use LessonWebWeb.ConnCase, async: true
+defmodule LessonWeb.ErrorJSONTest do
+  use LessonWeb.ConnCase, async: true
 
   test "renders 404" do
-    assert LessonWebWeb.ErrorJSON.render("404.json", %{}) == %{errors: %{detail: "Not Found"}}
+    assert LessonWeb.ErrorJSON.render("404.json", %{}) == %{errors: %{detail: "Not Found"}}
   end
 
   test "renders 500" do
-    assert LessonWebWeb.ErrorJSON.render("500.json", %{}) ==
+    assert LessonWeb.ErrorJSON.render("500.json", %{}) ==
              %{errors: %{detail: "Internal Server Error"}}
   end
 end

@@ -9,11 +9,11 @@ defmodule LessonWeb.Application do
   def start(_type, _args) do
     children = [
       # Start the Telemetry supervisor
-      LessonWebWeb.Telemetry,
+      LessonWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: LessonWeb.PubSub},
       # Start the Endpoint (http/https)
-      LessonWebWeb.Endpoint
+      LessonWeb.Endpoint
       # Start a worker by calling: LessonWeb.Worker.start_link(arg)
       # {LessonWeb.Worker, arg}
     ]
@@ -28,7 +28,7 @@ defmodule LessonWeb.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    LessonWebWeb.Endpoint.config_change(changed, removed)
+    LessonWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end
