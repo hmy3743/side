@@ -16,6 +16,6 @@ defmodule Side.MixProject do
   #
   # Run "mix help deps" for examples and options.
   defp deps do
-    []
+    [{:phoenix_live_view, ">= 0.0.0"}]
   end
 end
