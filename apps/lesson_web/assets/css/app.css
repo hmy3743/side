@@ -3,7 +3,3 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
-
-div.video {
-    @apply h-56 border border-gray-400 border-dashed
-}
