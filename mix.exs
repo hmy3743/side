@@ -6,6 +6,11 @@ defmodule Side.MixProject do
       apps_path: "apps",
       version: "0.1.0",
       start_permanent: Mix.env() == :prod,
+      releases: [
+        lesson: [
+          applications: [lesson_web: :permanent]
+        ]
+      ],
       deps: deps()
     ]
   end
@@ -16,6 +21,10 @@ defmodule Side.MixProject do
   #
   # Run "mix help deps" for examples and options.
   defp deps do
-    [{:phoenix_live_view, ">= 0.0.0"}]
+    [
+      {:phoenix_live_view, ">= 0.0.0"},
+      {:esbuild, ">= 0.0.0"},
+      {:tailwind, ">= 0.0.0"}
+    ]
   end
 end

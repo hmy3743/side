@@ -10,7 +10,9 @@ if config_env() == :prod do
 
   config :core, Core.Repo,
     url: database_url,
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
+    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+    ssl: false,
+    socket_options: [:inet6]
 
   config :core,
          :token_signing_secret,
@@ -65,6 +67,8 @@ if config_env() == :prod do
       port: port
     ],
     secret_key_base: secret_key_base
+
+  config :lesson_web, LessonWeb.Endpoint, server: true
 
   # ## SSL Support
   #

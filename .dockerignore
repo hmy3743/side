@@ -1,0 +1,95 @@
+# flyctl launch added from .elixir_ls/.gitignore
+.elixir_ls/**/*
+
+# flyctl launch added from .gitignore
+# The directory Mix will write compiled artifacts to.
+_build
+
+# If you run "mix test --cover", coverage assets end up here.
+cover
+
+# The directory Mix downloads your dependencies sources to.
+deps
+
+# Where third-party dependencies like ExDoc output generated docs.
+doc
+
+# Ignore .fetch files in case you like to edit your project deps locally.
+.fetch
+
+# If the VM crashes, it generates a dump, let's ignore it too.
+**/erl_crash.dump
+
+# Also ignore archive artifacts (built via "mix archive.build").
+**/*.ez
+
+# Temporary files, for example, from tests.
+tmp
+
+# flyctl launch added from apps/core/.gitignore
+# The directory Mix will write compiled artifacts to.
+apps/core/_build
+
+# If you run "mix test --cover", coverage assets end up here.
+apps/core/cover
+
+# The directory Mix downloads your dependencies sources to.
+apps/core/deps
+
+# Where third-party dependencies like ExDoc output generated docs.
+apps/core/doc
+
+# Ignore .fetch files in case you like to edit your project deps locally.
+apps/core/.fetch
+
+# If the VM crashes, it generates a dump, let's ignore it too.
+apps/core/**/erl_crash.dump
+
+# Also ignore archive artifacts (built via "mix archive.build").
+apps/core/**/*.ez
+
+# Ignore package tarball (built via "mix hex.build").
+apps/core/**/core-*.tar
+
+# Temporary files, for example, from tests.
+apps/core/tmp
+
+# flyctl launch added from apps/lesson_web/.gitignore
+# The directory Mix will write compiled artifacts to.
+apps/lesson_web/_build
+
+# If you run "mix test --cover", coverage assets end up here.
+apps/lesson_web/cover
+
+# The directory Mix downloads your dependencies sources to.
+apps/lesson_web/deps
+
+# Where 3rd-party dependencies like ExDoc output generated docs.
+apps/lesson_web/doc
+
+# Ignore .fetch files in case you like to edit your project deps locally.
+apps/lesson_web/.fetch
+
+# If the VM crashes, it generates a dump, let's ignore it too.
+apps/lesson_web/**/erl_crash.dump
+
+# Also ignore archive artifacts (built via "mix archive.build").
+apps/lesson_web/**/*.ez
+
+# Temporary files, for example, from tests.
+apps/lesson_web/tmp
+
+# Ignore package tarball (built via "mix hex.build").
+apps/lesson_web/**/lesson_web-*.tar
+
+# Ignore assets that are produced by build tools.
+apps/lesson_web/priv/static/assets
+
+# Ignore digested assets cache.
+apps/lesson_web/priv/static/cache_manifest.json
+
+# In case you use Node.js/npm, you want to ignore these.
+apps/lesson_web/**/npm-debug.log
+apps/lesson_web/assets/node_modules
+
+fly.toml
