@@ -20,6 +20,33 @@ defmodule LessonWeb.Router do
     live "/", IndexLive
   end
 
+  scope "/admin", LessonWeb.Admin do
+    pipe_through :browser
+
+    live_session :admin, layout: {LessonWeb.Layouts, :admin} do
+      live "/", IndexLive
+
+      scope "/account", Account do
+        live "/application", ApplicationLive
+        live "/editing", AccountEditingLive
+        live "/creating", AccountCreatingLive
+      end
+
+      scope "/schedule", Schedule do
+        live "/editing", ScheduleEditingLive
+      end
+
+      scope "/lesson", Lesson do
+        live "/evaluating", LessonEvaluatingLive
+      end
+
+      scope "/statistic", Statistic do
+        live "/teacher", StatisticTeacherLive
+        live "/student", StatisticStudentLive
+      end
+    end
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", LessonWeb do
   #   pipe_through :api
