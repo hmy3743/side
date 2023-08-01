@@ -20,7 +20,9 @@ defmodule LessonWeb.Router do
   scope "/", LessonWeb do
     pipe_through :browser
 
-    live "/", IndexLive
+    live_session :public, on_mount: {OnMounts, :set_locale} do
+      live "/", IndexLive
+    end
   end
 
   scope "/admin", LessonWeb.Admin do
