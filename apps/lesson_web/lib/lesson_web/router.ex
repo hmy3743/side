@@ -1,9 +1,12 @@
 defmodule LessonWeb.Router do
   use LessonWeb, :router
+  import LessonWeb.Plugs
+  alias LessonWeb.OnMounts
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
+    plug :set_locale_by_accept_language_header
     plug :fetch_live_flash
     plug :put_root_layout, {LessonWeb.Layouts, :root}
     plug :protect_from_forgery
@@ -23,7 +26,7 @@ defmodule LessonWeb.Router do
   scope "/admin", LessonWeb.Admin do
     pipe_through :browser
 
-    live_session :admin, layout: {LessonWeb.Layouts, :admin} do
+    live_session :admin, layout: {LessonWeb.Layouts, :admin}, on_mount: {OnMounts, :set_locale} do
       live "/", IndexLive
 
       scope "/account", Account do

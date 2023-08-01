@@ -1,0 +1,98 @@
+## This file is a PO Template file.
+##
+## "msgid"s here are often extracted from source code.
+## Add new messages manually only if they're dynamic
+## messages that can't be statically extracted.
+##
+## Run "mix gettext.extract" to bring this file up to
+## date. Leave "msgstr"s empty as changing them here has no
+## effect: edit them in PO (.po) files instead.
+#
+msgid ""
+msgstr ""
+
+#: lib/lesson_web/components/core_components.ex:449
+#, elixir-autogen, elixir-format
+msgid "Actions"
+msgstr ""
+
+#: lib/lesson_web/components/core_components.ex:76
+#: lib/lesson_web/components/core_components.ex:128
+#, elixir-autogen, elixir-format
+msgid "close"
+msgstr ""
+
+#: lib/lesson_web/components/layouts.ex:13
+#, elixir-autogen, elixir-format
+msgid "가입 요청 확인"
+msgstr ""
+
+#: lib/lesson_web/components/layouts.ex:10
+#, elixir-autogen, elixir-format
+msgid "계정 관리"
+msgstr ""
+
+#: lib/lesson_web/components/layouts.ex:18
+#, elixir-autogen, elixir-format
+msgid "계정 생성"
+msgstr ""
+
+#: lib/lesson_web/components/layouts.ex:23
+#, elixir-autogen, elixir-format
+msgid "계정 수정/삭제"
+msgstr ""
+
+#: lib/lesson_web/live/index_live.html.heex:76
+#, elixir-autogen, elixir-format
+msgid "매일 매일 미국식 영어를 합리적인 가격으로 시작하세요"
+msgstr ""
+
+#: lib/lesson_web/components/layouts.ex:47
+#, elixir-autogen, elixir-format
+msgid "선생님 통계"
+msgstr ""
+
+#: lib/lesson_web/live/index_live.html.heex:73
+#, elixir-autogen, elixir-format
+msgid "수강해보고 결정하세요!"
+msgstr ""
+
+#: lib/lesson_web/components/layouts.ex:36
+#, elixir-autogen, elixir-format
+msgid "수업 관리"
+msgstr ""
+
+#: lib/lesson_web/components/layouts.ex:39
+#, elixir-autogen, elixir-format
+msgid "수업 조회/평가"
+msgstr ""
+
+#: lib/lesson_web/live/index_live.html.heex:26
+#, elixir-autogen, elixir-format
+msgid "시작하기"
+msgstr ""
+
+#: lib/lesson_web/live/index_live.html.heex:24
+#, elixir-autogen, elixir-format
+msgid "온라인 화상 영어 수업"
+msgstr ""
+
+#: lib/lesson_web/components/layouts.ex:28
+#, elixir-autogen, elixir-format
+msgid "일정 관리"
+msgstr ""
+
+#: lib/lesson_web/components/layouts.ex:31
+#, elixir-autogen, elixir-format
+msgid "일정 변경"
+msgstr ""
+
+#: lib/lesson_web/components/layouts.ex:44
+#, elixir-autogen, elixir-format
+msgid "통계"
+msgstr ""
+
+#: lib/lesson_web/components/layouts.ex:52
+#, elixir-autogen, elixir-format
+msgid "학생 통계"
+msgstr ""

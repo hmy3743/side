@@ -5,7 +5,7 @@ defmodule LessonWeb.Layouts do
 
   defp lnb(assigns) do
     ~H"""
-    <nav class="w-36 min-h-screen shadow-lg bg-slate-50">
+    <nav class="w-40 min-h-screen shadow-lg bg-slate-50">
       <ul class="m-2 p-1 border-b">
         <span class="text-xl"><%= gettext("계정 관리") %></span>
         <li class="ml-2 m-1 text-sm bg-slate-100 border border-slate-400 shadow">
