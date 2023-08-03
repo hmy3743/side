@@ -3,5 +3,6 @@ defmodule Lesson.Registry do
 
   entries do
     entry Lesson.Schedule
+    entry Lesson.JoiningRequest
   end
 end

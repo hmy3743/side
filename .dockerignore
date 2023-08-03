@@ -93,3 +93,5 @@ apps/lesson_web/**/npm-debug.log
 apps/lesson_web/assets/node_modules
 
 fly.toml
+Dockerfile
+.dockerignore

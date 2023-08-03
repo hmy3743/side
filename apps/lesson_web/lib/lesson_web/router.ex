@@ -1,6 +1,7 @@
 defmodule LessonWeb.Router do
   use LessonWeb, :router
   import LessonWeb.Plugs
+  alias LessonWeb.Admin.Account.JoiningRequestLive
   alias LessonWeb.OnMounts
 
   pipeline :browser do
@@ -22,6 +23,7 @@ defmodule LessonWeb.Router do
 
     live_session :public, on_mount: {OnMounts, :set_locale} do
       live "/", IndexLive
+      live "/request_joining", RequestJoiningLive
     end
   end
 
@@ -32,7 +34,7 @@ defmodule LessonWeb.Router do
       live "/", IndexLive
 
       scope "/account", Account do
-        live "/application", ApplicationLive
+        live "/application", JoiningRequestLive
         live "/editing", AccountEditingLive
         live "/creating", AccountCreatingLive
       end

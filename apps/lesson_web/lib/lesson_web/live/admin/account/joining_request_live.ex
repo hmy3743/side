@@ -1,4 +1,4 @@
-defmodule LessonWeb.Admin.Account.ApplicationLive do
+defmodule LessonWeb.Admin.Account.JoiningRequestLive do
   use LessonWeb, :live_view
 
   @impl true

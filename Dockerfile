@@ -25,6 +25,8 @@ RUN apt-get update -y && apt-get install -y nodejs build-essential
 RUN mix archive.install hex phx_new 1.7.2 --force
 
 COPY mix.exs ./mix.exs
+COPY apps/core/mix.exs ./apps/core/mix.exs
+COPY apps/lesson_web/mix.exs ./apps/lesson_web/mix.exs
 RUN mix deps.get
 RUN mix deps.compile
 RUN mix compile
@@ -51,7 +53,7 @@ ENV MIX_ENV="${MIX_ENV}"
 
 RUN mix release ${RELEASE}
 
-FROM ${BUILDER_IMAGE} as runner
+FROM ${RUNNER_IMAGE} as runner
 WORKDIR /app
 ARG RELEASE
 ARG MIX_ENV

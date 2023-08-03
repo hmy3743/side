@@ -23,7 +23,12 @@ defmodule LessonWeb.MixProject do
   def application do
     [
       mod: {LessonWeb.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications:
+        if Mix.env() == :prod do
+          [:logger, :runtime_tools]
+        else
+          [:logger, :runtime_tools, :wx, :observer]
+        end
     ]
   end
 
@@ -36,19 +41,21 @@ defmodule LessonWeb.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.7.2"},
-      {:phoenix_html, "~> 3.3"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.18.16"},
-      {:floki, ">= 0.30.0", only: :test},
-      {:phoenix_live_dashboard, "~> 0.7.2"},
+      {:core, in_umbrella: true},
+      {:phoenix, ">= 0.0.0"},
+      {:phoenix_html, ">= 0.0.0"},
+      {:phoenix_live_reload, ">= 0.0.0", only: :dev},
+      {:phoenix_live_view, ">= 0.0.0"},
+      {:ash_phoenix, ">= 0.0.0"},
+      {:floki, ">= 0.0.0", only: :test},
+      {:phoenix_live_dashboard, ">= 0.0.0"},
       {:esbuild, ">= 0.0.0", runtime: Mix.env() == :dev},
       {:tailwind, ">= 0.0.0", runtime: Mix.env() == :dev},
-      {:telemetry_metrics, "~> 0.6"},
-      {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.20"},
-      {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:telemetry_metrics, ">= 0.0.0"},
+      {:telemetry_poller, ">= 0.0.0"},
+      {:gettext, ">= 0.0.0"},
+      {:jason, ">= 0.0.0"},
+      {:plug_cowboy, ">= 0.0.0"}
     ]
   end
 

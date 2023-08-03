@@ -13,6 +13,9 @@ primary_region = "nrt"
   RELEASE="lesson"
   MIX_ENV="prod"
 
+[deploy]
+  release_command = "./bin/lesson eval Core.Release.migrate"
+
 [http_service]
   internal_port = 4000
   force_https = true

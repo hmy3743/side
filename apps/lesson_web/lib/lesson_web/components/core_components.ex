@@ -255,6 +255,8 @@ defmodule LessonWeb.CoreComponents do
   attr :options, :list, doc: "the options to pass to Phoenix.HTML.Form.options_for_select/2"
   attr :multiple, :boolean, default: false, doc: "the multiple flag for select inputs"
 
+  attr :class, :string, default: ""
+
   attr :rest, :global,
     include: ~w(autocomplete cols disabled form list max maxlength min minlength
                 pattern placeholder readonly required rows size step)
@@ -275,7 +277,7 @@ defmodule LessonWeb.CoreComponents do
       assign_new(assigns, :checked, fn -> Phoenix.HTML.Form.normalize_value("checkbox", value) end)
 
     ~H"""
-    <div phx-feedback-for={@name}>
+    <div phx-feedback-for={@name} class={@class}>
       <label class="flex items-center gap-4 text-sm leading-6 text-zinc-600">
         <input type="hidden" name={@name} value="false" />
         <input
@@ -296,7 +298,7 @@ defmodule LessonWeb.CoreComponents do
 
   def input(%{type: "select"} = assigns) do
     ~H"""
-    <div phx-feedback-for={@name}>
+    <div phx-feedback-for={@name} class={@class}>
       <.label for={@id}><%= @label %></.label>
       <select
         id={@id}
@@ -315,7 +317,7 @@ defmodule LessonWeb.CoreComponents do
 
   def input(%{type: "textarea"} = assigns) do
     ~H"""
-    <div phx-feedback-for={@name}>
+    <div phx-feedback-for={@name} class={@class}>
       <.label for={@id}><%= @label %></.label>
       <textarea
         id={@id}
@@ -336,7 +338,7 @@ defmodule LessonWeb.CoreComponents do
   # All other inputs text, datetime-local, url, password, etc. are handled here...
   def input(assigns) do
     ~H"""
-    <div phx-feedback-for={@name}>
+    <div phx-feedback-for={@name} class={@class}>
       <.label for={@id}><%= @label %></.label>
       <input
         type={@type}
