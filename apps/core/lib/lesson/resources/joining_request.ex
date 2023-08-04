@@ -22,6 +22,10 @@ defmodule Lesson.JoiningRequest do
     update_timestamp :updated_at
   end
 
+  identities do
+    identity :contact, [:contact], pre_check_with: Lesson
+  end
+
   actions do
     defaults [:create, :read, :update]
   end

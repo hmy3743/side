@@ -11,7 +11,7 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: lib/lesson_web/components/core_components.ex:449
+#: lib/lesson_web/components/core_components.ex:451
 #, elixir-autogen, elixir-format
 msgid "Actions"
 msgstr ""
@@ -95,4 +95,44 @@ msgstr ""
 #: lib/lesson_web/components/layouts.ex:52
 #, elixir-autogen, elixir-format
 msgid "학생 통계"
+msgstr ""
+
+#: lib/lesson_web/live/request_joining_live.html.heex:8
+#, elixir-autogen, elixir-format
+msgid "Verbose english의 회원이 되어보세요.  당신의 영어 공부를 도와줄 선생님들이 기다리고 있습니다."
+msgstr ""
+
+#: lib/lesson_web/live/request_joining_live.html.heex:15
+#, elixir-autogen, elixir-format
+msgid "관리자가 확인 후 연락드립니다"
+msgstr ""
+
+#: lib/lesson_web/live/request_joining_live.html.heex:20
+#, elixir-autogen, elixir-format
+msgid "성"
+msgstr ""
+
+#: lib/lesson_web/live/request_joining_live.html.heex:25
+#, elixir-autogen, elixir-format
+msgid "요청하기"
+msgstr ""
+
+#: lib/lesson_web/live/request_joining_live.html.heex:4
+#, elixir-autogen, elixir-format
+msgid "원어민처럼 말하세요."
+msgstr ""
+
+#: lib/lesson_web/live/request_joining_live.html.heex:19
+#, elixir-autogen, elixir-format
+msgid "이름"
+msgstr ""
+
+#: lib/lesson_web/live/request_joining_live.html.heex:22
+#, elixir-autogen, elixir-format
+msgid "카카오톡 프로필 혹은 이메일"
+msgstr ""
+
+#: lib/lesson_web/live/request_joining_live.html.heex:14
+#, elixir-autogen, elixir-format
+msgid "회원가입 요청"
 msgstr ""

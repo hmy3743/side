@@ -10,3 +10,13 @@ msgid ""
 msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: lib/lesson_web/gettext_static.ex:5
+#, elixir-autogen, elixir-format
+msgid "has already been taken"
+msgstr "이미 사용 중입니다"
+
+#: lib/lesson_web/gettext_static.ex:6
+#, elixir-autogen, elixir-format
+msgid "is required"
+msgstr "필수 항목입니다"
