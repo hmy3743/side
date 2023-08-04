@@ -24,7 +24,7 @@ RUN apt-get update -y && apt-get install -y nodejs build-essential
 # Install Phoenix (make sure to replace "x.x.x" with the appropriate version)
 RUN mix archive.install hex phx_new 1.7.2 --force
 
-COPY mix.exs ./mix.exs
+COPY mix.exs mix.lock ./
 COPY apps/core/mix.exs ./apps/core/mix.exs
 COPY apps/lesson_web/mix.exs ./apps/lesson_web/mix.exs
 RUN mix deps.get
