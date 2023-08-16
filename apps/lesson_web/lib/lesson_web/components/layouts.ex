@@ -9,7 +9,7 @@ defmodule LessonWeb.Layouts do
       <ul class="m-2 p-1 border-b">
         <span class="text-xl"><%= gettext("계정 관리") %></span>
         <li class="ml-2 m-1 text-sm bg-slate-100 border border-slate-400 shadow">
-          <.link patch={~p"/admin/account/application"} class="p-1 block w-full h-full">
+          <.link patch={~p"/admin/account/joining_request"} class="p-1 block w-full h-full">
             <%= gettext("가입 요청 확인") %>
           </.link>
         </li>

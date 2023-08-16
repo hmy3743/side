@@ -14,12 +14,66 @@
       <div class="text-2xl"><%= gettext("회원가입 요청") %></div>
       <div class="text-sm"><%= gettext("관리자가 확인 후 연락드립니다") %></div>
     </div>
-    <.form for={@form} class="mt-2" phx-change="validate" phx-submit="create">
+    <.form for={@form} class="mt-2" phx-change="validate" phx-submit="submit">
       <div class="grid grid-cols-2 gap-4">
-        <.input field={@form[:first_name]} label={gettext("이름")} />
-        <.input field={@form[:last_name]} label={gettext("성")} />
+        <.input
+          field={@form[:first_name]}
+          label={gettext("이름")}
+          disabled={is_struct(@request, Lesson.JoiningRequest)}
+          class="bg-white disabled:bg-slate-200"
+        />
+        <.input
+          field={@form[:last_name]}
+          label={gettext("성")}
+          disabled={is_struct(@request, Lesson.JoiningRequest)}
+          class="bg-white disabled:bg-slate-200"
+        />
       </div>
-      <.input field={@form[:contact]} label={gettext("카카오톡 프로필 혹은 이메일")} class="mt-2" />
+      <.input
+        field={@form[:contact]}
+        label={gettext("카카오톡 프로필 혹은 이메일")}
+        class="mt-2"
+        disabled={is_struct(@request, Lesson.JoiningRequest)}
+        class="bg-white disabled:bg-slate-200"
+      />
+      <div :if={is_struct(@request, Lesson.JoiningRequest)} class="mt-4 border rounded">
+        <div class="p-2 text-lg"><%= gettext("추가 정보") %></div>
+        <div class="grid grid-cols-2">
+          <.input
+            field={@form[:gender]}
+            label={gettext("성별")}
+            type="select"
+            options={["": nil, 남성: :male, 여성: :female, 기타: :etc]}
+            div_class="p-2"
+          />
+          <.input field={@form[:age]} label={gettext("만 나이")} div_class="p-2" type="number" />
+          <.input
+            field={@form[:level]}
+            label={gettext("영어 수준")}
+            div_class="p-2"
+            type="select"
+            options={[
+              "": nil,
+              초심자: :beginner,
+              "간단한 대화 가능": :intermediate,
+              "자연스러운 대화 가능": :advanced
+            ]}
+          />
+          <.input
+            field={@form[:purpose]}
+            label={gettext("학습 목적")}
+            div_class="p-2"
+            type="select"
+            options={["": nil, 업무: :business, 여행: :travel, 취미: :hobby, 기타: :etc]}
+          />
+        </div>
+        <.input
+          field={@form[:comment]}
+          label="추가로 공유하고 싶은 내용"
+          type="textarea"
+          div_class="p-2"
+        />
+      </div>
       <div class="mt-2 w-full grid place-items-end">
         <.button class="bg-blue-700 text-white">
           <%= gettext("요청하기") %>

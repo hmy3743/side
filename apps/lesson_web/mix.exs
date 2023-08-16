@@ -55,7 +55,8 @@ defmodule LessonWeb.MixProject do
       {:telemetry_poller, ">= 0.0.0"},
       {:gettext, ">= 0.0.0"},
       {:jason, ">= 0.0.0"},
-      {:plug_cowboy, ">= 0.0.0"}
+      {:plug_cowboy, ">= 0.0.0"},
+      {:timex, ">= 0.0.0"}
     ]
   end
 

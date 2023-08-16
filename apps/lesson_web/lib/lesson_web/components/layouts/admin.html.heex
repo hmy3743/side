@@ -4,11 +4,11 @@
 <main>
   <div class="mx-auto">
     <.flash_group flash={@flash} />
-    <div class="flex">
+    <div class="flex overflow-x-auto">
       <div class="w-fit">
         <.lnb />
       </div>
-      <div class="w-full p-5">
+      <div class="p-5">
         <%= @inner_content %>
       </div>
     </div>

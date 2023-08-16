@@ -2,6 +2,10 @@ defmodule Lesson.JoiningRequest do
   use Ash.Resource,
     data_layer: AshPostgres.DataLayer
 
+  resource do
+    base_filter is_nil: :deleted_at
+  end
+
   attributes do
     uuid_primary_key :id
 
@@ -18,6 +22,7 @@ defmodule Lesson.JoiningRequest do
     attribute :purpose, :atom, constraints: [one_of: [:business, :travel, :hobby, :etc]]
     attribute :comment, :string, constraints: [max_length: 1000]
 
+    attribute :deleted_at, :utc_datetime
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -28,10 +33,17 @@ defmodule Lesson.JoiningRequest do
 
   actions do
     defaults [:create, :read, :update]
+
+    destroy do
+      change set_attribute(:deleted_at, &DateTime.utc_now/0)
+      soft? true
+      primary? true
+    end
   end
 
   postgres do
     table "joining_request"
     repo Core.Repo
+    base_filter_sql "deleted_at IS NULL"
   end
 end
