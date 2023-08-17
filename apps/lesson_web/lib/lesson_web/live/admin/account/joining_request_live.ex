@@ -32,7 +32,6 @@ defmodule LessonWeb.Admin.Account.JoiningRequestLive do
 
     delete_target_records =
       Enum.filter(socket.assigns.requests, fn request -> request.id in delete_target_ids end)
-      |> IO.inspect()
 
     Enum.each(delete_target_records, fn request -> Lesson.destroy!(request) end)
 

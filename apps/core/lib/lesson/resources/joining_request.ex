@@ -34,7 +34,7 @@ defmodule Lesson.JoiningRequest do
   actions do
     defaults [:create, :read, :update]
 
-    destroy do
+    destroy :soft_delete do
       change set_attribute(:deleted_at, &DateTime.utc_now/0)
       soft? true
       primary? true
