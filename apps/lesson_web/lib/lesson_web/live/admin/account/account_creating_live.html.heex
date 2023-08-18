@@ -1,3 +1,71 @@
-<div>
-  This page is for creating accounts.
-</div>
+<.form for={@form} phx-change="validate" phx-submit="submit">
+  <.input
+    field={@form[:email]}
+    label={gettext("이메일")}
+    {request_value(@request, :contact)}
+    phx-update="ignore"
+  />
+  <div class="flex">
+    <.input
+      field={@form[:first_name]}
+      label={gettext("이름")}
+      {request_value(@request, :first_name)}
+      phx-update="ignore"
+    />
+    <.input
+      field={@form[:last_name]}
+      label={gettext("성")}
+      {request_value(@request, :last_name)}
+      phx-update="ignore"
+    />
+  </div>
+  <div class="flex">
+    <.input
+      field={@form[:gender]}
+      label={gettext("성별")}
+      type="select"
+      options={["": nil, 남성: :male, 여성: :female, 기타: :etc]}
+      {request_value(@request, :gender)}
+      phx-update="ignore"
+    />
+    <.input
+      field={@form[:birth]}
+      label={gettext("생년월일")}
+      {request_value(@request, :birth)}
+      phx-update="ignore"
+    />
+    <.input
+      field={@form[:level]}
+      label={gettext("영어 수준")}
+      options={[
+        "": nil,
+        초심자: :beginner,
+        "간단한 대화 가능": :intermediate,
+        "자연스러운 대화 가능": :advanced
+      ]}
+      type="select"
+      {request_value(@request, :level)}
+      phx-update="ignore"
+    />
+    <.input
+      field={@form[:purpose]}
+      label={gettext("학습 목적")}
+      options={["": nil, 업무: :business, 여행: :travel, 취미: :hobby, 기타: :etc]}
+      type="select"
+      {request_value(@request, :purpose)}
+      phx-update="ignore"
+    />
+  </div>
+  <.input
+    field={@form[:comment]}
+    label={gettext("기타 특이사항")}
+    type="textarea"
+    {request_value(@request, :comment)}
+    phx-update="ignore"
+  />
+  <div class="flex">
+    <.input field={@form[:kakao_profile]} label={gettext("카카오 프로필")} phx-update="ignore" />
+    <.input field={@form[:skype_profile]} label={gettext("스카이프 프로필")} phx-update="ignore" />
+  </div>
+  <.button class="w-full"><%= gettext("생성하기") %></.button>
+</.form>

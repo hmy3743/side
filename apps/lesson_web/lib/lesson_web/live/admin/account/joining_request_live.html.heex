@@ -5,11 +5,12 @@
   <table class="table-auto border border-separate rounded-[16px] overflow-hidden">
     <thead class="bg-slate-300">
       <th class="p-2 border"><%= gettext("선택") %></th>
+      <th class="p-2 border"><%= gettext("계정 생성") %></th>
       <th class="p-2 border"><%= gettext("이름") %></th>
       <th class="p-2 border"><%= gettext("성") %></th>
       <th class="p-2 border"><%= gettext("연락처") %></th>
       <th class="p-2 border"><%= gettext("성별") %></th>
-      <th class="p-2 border"><%= gettext("만 나이") %></th>
+      <th class="p-2 border"><%= gettext("생년월일") %></th>
       <th class="p-2 border"><%= gettext("영어 수준") %></th>
       <th class="p-2 border"><%= gettext("목적") %></th>
       <th class="p-2 border"><%= gettext("기타 사항") %></th>
@@ -20,16 +21,23 @@
         <td class="p-2 border">
           <.input type="checkbox" name={request.id} value="false" />
         </td>
+        <td>
+          <.link
+            patch={~p"/admin/account/creating?#{[request_id: request.id]}"}
+            class="p-2 rounded bg-black text-white break-keep"
+          >
+            <%= gettext("생성") %>
+          </.link>
+        </td>
         <td class="p-2 border"><%= request.first_name %></td>
         <td class="p-2 border"><%= request.last_name %></td>
         <td class="p-2 border"><%= request.contact %></td>
         <td class="p-2 border"><%= request.gender %></td>
-        <td class="p-2 border"><%= request.age %></td>
+        <td class="p-2 border"><%= request.birth %></td>
         <td class="p-2 border"><%= request.level %></td>
         <td class="p-2 border"><%= request.purpose %></td>
         <td class="p-2 border"><%= request.comment %></td>
         <td class="p-2 border">
-          <%!-- <%= Calendar.strftime(request.inserted_at, "%y-%m-%d %I:%M") %> --%>
           <%= request.inserted_at
           |> Timex.Timezone.convert("Asia/Seoul")
           |> Timex.format!("{YY}-{M}-{D} {h24}:{m}") %>

@@ -17,7 +17,7 @@ defmodule Lesson.JoiningRequest do
     attribute :contact, :string, allow_nil?: false
 
     attribute :gender, :atom, constraints: [one_of: [:male, :female, :etc]]
-    attribute :age, :integer, constraints: [min: 1, max: 100]
+    attribute :birth, :date
     attribute :level, :atom, constraints: [one_of: [:beginner, :intermediate, :advanced]]
     attribute :purpose, :atom, constraints: [one_of: [:business, :travel, :hobby, :etc]]
     attribute :comment, :string, constraints: [max_length: 1000]

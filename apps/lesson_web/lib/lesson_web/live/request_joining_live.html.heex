@@ -46,7 +46,7 @@
             options={["": nil, 남성: :male, 여성: :female, 기타: :etc]}
             div_class="p-2"
           />
-          <.input field={@form[:age]} label={gettext("만 나이")} div_class="p-2" type="number" />
+          <.input field={@form[:birth]} label={gettext("생년월일 (예: 1999-02-10)")} div_class="p-2" />
           <.input
             field={@form[:level]}
             label={gettext("영어 수준")}

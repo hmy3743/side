@@ -7,7 +7,24 @@ defmodule Core.Account.User do
     uuid_primary_key :id
 
     attribute :email, :ci_string, allow_nil?: false
-    attribute :hashed_password, :string, allow_nil?: false, sensitive?: true
+    attribute :first_name, :string, allow_nil?: false
+    attribute :last_name, :string, allow_nil?: false
+    attribute :gender, :atom, constraints: [one_of: [:male, :female, :etc]], allow_nil?: false
+    attribute :birth, :date, allow_nil?: false
+
+    attribute :level, :atom,
+      constraints: [one_of: [:beginner, :intermediate, :advanced]],
+      allow_nil?: false
+
+    attribute :purpose, :atom,
+      constraints: [one_of: [:business, :travel, :hobby, :etc]],
+      allow_nil?: false
+
+    attribute :comment, :string, constraints: [max_length: 1000], default: "", allow_nil?: false
+
+    attribute :kakao_profile, :string, allow_nil?: true
+    attribute :skype_profile, :string, allow_nil?: true
+    attribute :hashed_password, :string, sensitive?: true
 
     create_timestamp :inserted_at
     update_timestamp :updated_at
