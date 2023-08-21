@@ -48,8 +48,7 @@ defmodule LessonWeb.RequestJoiningLive do
       {:ok, request} ->
         socket =
           socket
-          |> submit_flash()
-          |> patch_patch(request)
+          |> patch_to_result(request)
 
         {:noreply, socket}
 
@@ -58,20 +57,13 @@ defmodule LessonWeb.RequestJoiningLive do
     end
   end
 
-  defp submit_flash(socket) do
+  defp patch_to_result(socket, request) do
     case socket.assigns do
       %{request: %Lesson.JoiningRequest{}} ->
-        put_flash(socket, :info, gettext("추가정보가 입력되었습니다.  감사합니다."))
+        push_navigate(socket, to: ~p"/result?#{[message_id: "joining", destination: "/"]}")
 
       _ ->
-        put_flash(socket, :info, gettext("요청이 성공적으로 접수되었습니다.  2,3일 이내에 연락드리겠습니다."))
-    end
-  end
-
-  defp patch_patch(socket, request) do
-    case socket.assigns do
-      %{request: %Lesson.JoiningRequest{}} -> push_navigate(socket, to: ~p"/")
-      _ -> push_patch(socket, to: ~p"/request_joining?#{[request_id: request.id]}")
+        push_patch(socket, to: ~p"/request_joining?#{[request_id: request.id]}")
     end
   end
 end

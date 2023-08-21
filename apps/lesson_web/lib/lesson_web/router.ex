@@ -23,6 +23,7 @@ defmodule LessonWeb.Router do
     live_session :public, on_mount: {OnMounts, :set_locale} do
       live "/", IndexLive
       live "/request_joining", RequestJoiningLive
+      live "/result", ResultLive
     end
   end
 
