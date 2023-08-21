@@ -109,6 +109,7 @@ msgid "관리자가 확인 후 연락드립니다"
 msgstr ""
 
 #: lib/lesson_web/live/admin/account/account_creating_live.html.heex:17
+#: lib/lesson_web/live/admin/account/account_editing_live.html.heex:5
 #: lib/lesson_web/live/admin/account/joining_request_live.html.heex:10
 #: lib/lesson_web/live/request_joining_live.html.heex:27
 #, elixir-autogen, elixir-format
@@ -126,6 +127,7 @@ msgid "원어민처럼 말하세요."
 msgstr ""
 
 #: lib/lesson_web/live/admin/account/account_creating_live.html.heex:11
+#: lib/lesson_web/live/admin/account/account_editing_live.html.heex:4
 #: lib/lesson_web/live/admin/account/joining_request_live.html.heex:9
 #: lib/lesson_web/live/request_joining_live.html.heex:21
 #, elixir-autogen, elixir-format
@@ -183,6 +185,7 @@ msgid "삭제하기"
 msgstr ""
 
 #: lib/lesson_web/live/admin/account/account_creating_live.html.heex:33
+#: lib/lesson_web/live/admin/account/account_editing_live.html.heex:7
 #: lib/lesson_web/live/admin/account/joining_request_live.html.heex:13
 #, elixir-autogen, elixir-format
 msgid "생년월일"
@@ -209,6 +212,7 @@ msgid "선택"
 msgstr ""
 
 #: lib/lesson_web/live/admin/account/account_creating_live.html.heex:25
+#: lib/lesson_web/live/admin/account/account_editing_live.html.heex:6
 #: lib/lesson_web/live/admin/account/joining_request_live.html.heex:12
 #: lib/lesson_web/live/request_joining_live.html.heex:44
 #, elixir-autogen, elixir-format
@@ -216,6 +220,7 @@ msgid "성별"
 msgstr ""
 
 #: lib/lesson_web/live/admin/account/account_creating_live.html.heex:68
+#: lib/lesson_web/live/admin/account/account_editing_live.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "스카이프 프로필"
 msgstr ""
@@ -226,6 +231,7 @@ msgid "연락처"
 msgstr ""
 
 #: lib/lesson_web/live/admin/account/account_creating_live.html.heex:39
+#: lib/lesson_web/live/admin/account/account_editing_live.html.heex:8
 #: lib/lesson_web/live/admin/account/joining_request_live.html.heex:14
 #: lib/lesson_web/live/request_joining_live.html.heex:52
 #, elixir-autogen, elixir-format
@@ -243,16 +249,19 @@ msgid "으로 이동합니다."
 msgstr ""
 
 #: lib/lesson_web/live/admin/account/account_creating_live.html.heex:4
+#: lib/lesson_web/live/admin/account/account_editing_live.html.heex:3
 #, elixir-autogen, elixir-format
 msgid "이메일"
 msgstr ""
 
+#: lib/lesson_web/live/admin/account/account_editing_live.html.heex:10
 #: lib/lesson_web/live/request_joining_live.html.heex:40
 #, elixir-autogen, elixir-format
 msgid "추가 정보"
 msgstr ""
 
 #: lib/lesson_web/live/admin/account/account_creating_live.html.heex:67
+#: lib/lesson_web/live/admin/account/account_editing_live.html.heex:11
 #, elixir-autogen, elixir-format
 msgid "카카오 프로필"
 msgstr ""
@@ -261,4 +270,59 @@ msgstr ""
 #: lib/lesson_web/live/request_joining_live.html.heex:64
 #, elixir-autogen, elixir-format
 msgid "학습 목적"
+msgstr ""
+
+#: lib/lesson_web/gettext_static.ex:13
+#, elixir-autogen, elixir-format
+msgid "advanced"
+msgstr ""
+
+#: lib/lesson_web/gettext_static.ex:11
+#, elixir-autogen, elixir-format
+msgid "beginner"
+msgstr ""
+
+#: lib/lesson_web/gettext_static.ex:14
+#, elixir-autogen, elixir-format
+msgid "business"
+msgstr ""
+
+#: lib/lesson_web/gettext_static.ex:10
+#, elixir-autogen, elixir-format
+msgid "etc"
+msgstr ""
+
+#: lib/lesson_web/gettext_static.ex:9
+#, elixir-autogen, elixir-format
+msgid "female"
+msgstr ""
+
+#: lib/lesson_web/gettext_static.ex:16
+#, elixir-autogen, elixir-format
+msgid "hobby"
+msgstr ""
+
+#: lib/lesson_web/gettext_static.ex:12
+#, elixir-autogen, elixir-format
+msgid "intermediate"
+msgstr ""
+
+#: lib/lesson_web/gettext_static.ex:8
+#, elixir-autogen, elixir-format
+msgid "male"
+msgstr ""
+
+#: lib/lesson_web/gettext_static.ex:15
+#, elixir-autogen, elixir-format
+msgid "travel"
+msgstr ""
+
+#: lib/lesson_web/live/admin/account/account_editing_live.html.heex:13
+#, elixir-autogen, elixir-format
+msgid "생성일자"
+msgstr ""
+
+#: lib/lesson_web/live/admin/account/account_editing_live.html.heex:9
+#, elixir-autogen, elixir-format
+msgid "학습목적"
 msgstr ""
