@@ -24,6 +24,8 @@ defmodule LessonWeb.Router do
       live "/", IndexLive
       live "/request_joining", RequestJoiningLive
       live "/result", ResultLive
+
+      live "/webrtc", WebRTCPocLive
     end
   end
 

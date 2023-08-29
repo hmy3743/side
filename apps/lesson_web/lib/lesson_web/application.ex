@@ -12,6 +12,7 @@ defmodule LessonWeb.Application do
       LessonWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: LessonWeb.PubSub},
+      LessonWeb.Presence,
       # Start the Endpoint (http/https)
       LessonWeb.Endpoint
       # Start a worker by calling: LessonWeb.Worker.start_link(arg)
