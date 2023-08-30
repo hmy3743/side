@@ -130,7 +130,9 @@ Hooks.ConnectWebRTCVideo = {
     );
     pc.onicecandidateerror = (event) => {
       console.log("onicecandidateerror", event);
-      this.pushEvent("onicecandidateerror", { event });
+      if (event.errorCode === 701){
+        this.pushEvent("onicecandidateerror", { event: event.errorText });
+      }
     };
 
     return pc;

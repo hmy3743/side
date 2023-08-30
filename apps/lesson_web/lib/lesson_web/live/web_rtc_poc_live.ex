@@ -54,7 +54,7 @@ defmodule LessonWeb.WebRTCPocLive do
 
   @impl true
   def handle_event("onicecandidateerror", %{"event" => event}, socket) do
-    {:noreply, put_flash(socket, :error, event)}
+    {:noreply, put_flash(socket, :error, inspect(event))}
   end
 
   @impl true
