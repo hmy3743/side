@@ -5,6 +5,7 @@
     {request_value(@request, :contact)}
     phx-update="ignore"
   />
+  <.input field={@form[:password]} label={gettext("비밀번호")} phx-update="ignore" />
   <div class="flex">
     <.input
       field={@form[:first_name]}

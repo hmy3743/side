@@ -31,7 +31,8 @@ defmodule Core.MixProject do
       # {:sibling_app_in_umbrella, in_umbrella: true}
       {:ash, ">= 0.0.0"},
       {:ash_authentication, ">= 0.0.0"},
-      {:ash_postgres, ">= 0.0.0"}
+      {:ash_postgres, ">= 0.0.0"},
+      {:yaml_elixir, ">= 0.0.0"}
     ]
   end
 end

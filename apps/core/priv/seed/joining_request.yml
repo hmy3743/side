@@ -1,0 +1,15 @@
+- first_name: Jam
+  last_name: Finch
+  contact: jam.finch@mockingbird.com
+  gender: male
+  birth: 1960-07-11
+  level: intermediate
+  purpose: hobby
+  
+- first_name: Scout
+  last_name: Finch
+  contact: scout.finch@mockingbird.com
+  gender: female
+  birth: 1960-07-11
+  level: beginner
+  purpose: etc

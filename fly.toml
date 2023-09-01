@@ -14,7 +14,7 @@ primary_region = "nrt"
   MIX_ENV="prod"
 
 [deploy]
-  release_command = "./bin/lesson eval Core.Release.migrate"
+  release_command = "./bin/lesson eval Core.Release.reset"
 
 [http_service]
   internal_port = 4000

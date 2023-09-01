@@ -9,22 +9,23 @@ defmodule Core.Account.User do
     attribute :email, :ci_string, allow_nil?: false
     attribute :first_name, :string, allow_nil?: false
     attribute :last_name, :string, allow_nil?: false
+    attribute :role, :atom, constraints: [one_of: [:student, :tutor, :manager]]
     attribute :gender, :atom, constraints: [one_of: [:male, :female, :etc]], allow_nil?: false
     attribute :birth, :date, allow_nil?: false
 
     attribute :level, :atom,
       constraints: [one_of: [:beginner, :intermediate, :advanced]],
-      allow_nil?: false
+      allow_nil?: true
 
     attribute :purpose, :atom,
       constraints: [one_of: [:business, :travel, :hobby, :etc]],
-      allow_nil?: false
+      allow_nil?: true
 
-    attribute :comment, :string, constraints: [max_length: 1000], default: "", allow_nil?: false
+    attribute :comment, :string, constraints: [max_length: 1000], allow_nil?: true
 
     attribute :kakao_profile, :string, allow_nil?: true
     attribute :skype_profile, :string, allow_nil?: true
-    attribute :hashed_password, :string, sensitive?: true
+    attribute :hashed_password, :string, sensitive?: true, allow_nil?: false
 
     create_timestamp :inserted_at
     update_timestamp :updated_at
@@ -38,7 +39,6 @@ defmodule Core.Account.User do
         identity_field :email
         hashed_password_field :hashed_password
         confirmation_required? false
-        register_action_name :register
       end
     end
 
@@ -57,7 +57,15 @@ defmodule Core.Account.User do
   end
 
   actions do
-    defaults [:create, :read, :update, :destroy]
+    defaults [:read, :update, :destroy]
+
+    create :register_with_password do
+      reject [:hashed_password]
+      argument :password, :string, allow_nil?: false, sensitive?: true
+      change AshAuthentication.Strategy.Password.HashPasswordChange
+      change AshAuthentication.GenerateTokenChange
+      validate AshAuthentication.Strategy.Password.PasswordConfirmationValidation
+    end
   end
 
   postgres do

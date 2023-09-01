@@ -1,0 +1,38 @@
+- email: admin@side.fly.dev
+  first_name: Noel
+  last_name: Han
+  role: manager
+  gender: male
+  birth: 1992-01-01
+  level: null
+  purpose: null
+  comment: "Admin"
+  kakao_profile: null
+  skype_profile: null
+  password: verbose2023!
+
+- email: pengsoo.kim@side.fly.dev
+  first_name: Pengsoo
+  last_name: Kim
+  role: tutor
+  gender: male
+  birth: 2000-01-01
+  level: null
+  purpose: null
+  comment: "Tutor of Verbose English"
+  kakao_profile: null
+  skype_profile: null
+  password: verbose2023!
+
+- email: haksaeng.kim@side.fly.dev
+  first_name: Haksaeng
+  last_name: Kim
+  role: student
+  gender: female
+  birth: 2010-01-01
+  level: intermediate
+  purpose: hobby
+  comment: "Student of Verbose English"
+  kakao_profile: null
+  skype_profile: null
+  password: verbose2023!

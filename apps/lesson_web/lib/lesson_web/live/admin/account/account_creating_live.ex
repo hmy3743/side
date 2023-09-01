@@ -5,7 +5,7 @@ defmodule LessonWeb.Admin.Account.AccountCreatingLive do
   def mount(_params, _session, socket) do
     form =
       Core.Account.User
-      |> AshPhoenix.Form.for_create(:create, api: Core.Account)
+      |> AshPhoenix.Form.for_create(:register_with_password, api: Core.Account)
       |> to_form()
 
     {:ok, assign(socket, form: form)}
