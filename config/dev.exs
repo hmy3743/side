@@ -20,7 +20,7 @@ config :core, :token_signing_secret, "secret"
 config :lesson_web, LessonWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {0, 0, 0, 0}, port: 4000],
+  http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
@@ -28,6 +28,19 @@ config :lesson_web, LessonWeb.Endpoint,
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:lesson_web, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:lesson_web, ~w(--watch)]}
+  ]
+
+config :shadow_chat, ShadowChatWeb.Endpoint,
+  # Binding to loopback ipv4 address prevents access from other machines.
+  # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
+  http: [ip: {127, 0, 0, 1}, port: 4001],
+  check_origin: false,
+  code_reloader: true,
+  debug_errors: true,
+  secret_key_base: "G9HOONaU8RauIuFJ0x/bNThaJPgmEIECRFJQtnbyBb3yPzQibAZJrIGq6zqZJpOZ",
+  watchers: [
+    esbuild: {Esbuild, :install_and_run, [:shadow_chat, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:shadow_chat, ~w(--watch)]}
   ]
 
 # ## SSL Support
@@ -63,8 +76,19 @@ config :lesson_web, LessonWeb.Endpoint,
     ]
   ]
 
+# Watch static and templates for browser reloading.
+config :shadow_chat, ShadowChatWeb.Endpoint,
+  live_reload: [
+    patterns: [
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/gettext/.*(po)$",
+      ~r"lib/shadow_chat_web/(controllers|live|components)/.*(ex|heex)$"
+    ]
+  ]
+
 # Enable dev routes for dashboard and mailbox
 config :lesson_web, dev_routes: true
+config :shadow_chat, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

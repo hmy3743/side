@@ -30,6 +30,16 @@ config :lesson_web, LessonWeb.Endpoint,
   pubsub_server: LessonWeb.PubSub,
   live_view: [signing_salt: "GX/IE77G"]
 
+# Configures the endpoint
+config :shadow_chat, ShadowChatWeb.Endpoint,
+  url: [host: "localhost"],
+  render_errors: [
+    formats: [html: ShadowChatWeb.ErrorHTML, json: ShadowChatWeb.ErrorJSON],
+    layout: false
+  ],
+  pubsub_server: ShadowChat.PubSub,
+  live_view: [signing_salt: "pLv3P8Mq"]
+
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",
@@ -37,6 +47,12 @@ config :esbuild,
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../apps/lesson_web/assets", __DIR__),
+    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ],
+  shadow_chat: [
+    args:
+      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+    cd: Path.expand("../apps/shadow_chat/assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
@@ -50,6 +66,14 @@ config :tailwind,
       --output=../priv/static/assets/app.css
     ),
     cd: Path.expand("../apps/lesson_web/assets", __DIR__)
+  ],
+  shadow_chat: [
+    args: ~w(
+      --config=tailwind.config.js
+      --input=css/app.css
+      --output=../priv/static/assets/app.css
+    ),
+    cd: Path.expand("../apps/shadow_chat/assets", __DIR__)
   ]
 
 # Configures Elixir's Logger

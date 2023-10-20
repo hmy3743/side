@@ -58,6 +58,7 @@ WORKDIR /app
 ARG RELEASE
 ARG MIX_ENV
 ENV MIX_ENV="${MIX_ENV}"
+ENV PHX_SERVER="true"
 
 COPY --from=builder /app/_build/${MIX_ENV}/rel/${RELEASE} .
 
