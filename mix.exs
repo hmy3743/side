@@ -9,6 +9,9 @@ defmodule Side.MixProject do
       releases: [
         lesson: [
           applications: [lesson_web: :permanent]
+        ],
+        shadow_chat: [
+          applications: [shadow_chat_web: :permanent]
         ]
       ],
       deps: deps()

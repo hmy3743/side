@@ -1,0 +1,89 @@
+<div>
+  <label for="quota">quota:</label>
+  <span><%= @quota %></span>
+  <div class="min-h-[16em] my-2 border-2 border-dashed rounded p-1">
+    <h2 class="text-2xl">Question</h2>
+    <div id="question">
+      <%= raw(@question || "Please wait...") %>
+    </div>
+    <%= if @example_sentences != [] do %>
+      <label for="example_sentences">Example Sentences</label>
+      <ul id="example_sentences" class="list-disc list-inside">
+        <li :for={example_sentence <- @example_sentences}>
+          <%= raw(example_sentence) %>
+        </li>
+      </ul>
+    <% end %>
+    <%= if @hint do %>
+      <a
+        phx-click={JS.toggle(to: "#hint")}
+        class="text-blue-600 dark:text-blue-500 hover:underline cursor-pointer"
+      >
+        Hint
+      </a>
+      <div id="hint" class="hidden">
+        <%= raw(@hint || "") %>
+      </div>
+    <% end %>
+  </div>
+  <h2 class="text-2xl">Evaluation</h2>
+  <div
+    id="evaluations"
+    class="grid grid-cols-1 sm:grid-cols-2 min-h-[16em] my-1 rounded border-dashed border-2 p-1"
+  >
+    <div :if={is_struct(@evaluation[:positive])} id="positive_evaluation" class="border">
+      <h2>Positive</h2>
+      <label for="positive_judge">Good or Bad</label>
+      <div id="positive_judge">
+        <span :if={@evaluation.positive.judge} class="text-green-500">Good</span>
+        <span :if={not @evaluation.positive.judge} class="text-red-500">Bad</span>
+      </div>
+      <label for="positive_score">Score</label>
+      <div id="positive_score">
+        <%= @evaluation.positive.score %> / 1.0
+      </div>
+      <label for="positive_reason">Reason</label>
+      <div id="positive_reason">
+        <%= @evaluation.positive.reason || "Wait for answer" %>
+      </div>
+      <label for="positive_improvement">Improvement</label>
+      <div id="positive_improvement">
+        <%= @evaluation.positive.improvement || "Wait for answer" %>
+      </div>
+    </div>
+    <div :if={is_struct(@evaluation[:critical])} id="critical_evaluation" class="border">
+      <h2>Critical</h2>
+      <label for="critical_judge">Good or Bad</label>
+      <div id="critical_judge">
+        <span :if={@evaluation.critical.judge} class="text-green-500">Good</span>
+        <span :if={not @evaluation.critical.judge} class="text-red-500">Bad</span>
+      </div>
+      <label for="critical_score">Score</label>
+      <div id="critical_score">
+        <%= @evaluation.critical.score %> / 1.0
+      </div>
+      <label for="critical_reason">Reason</label>
+      <div id="critical_reason">
+        <%= @evaluation.critical.reason || "Wait for answer" %>
+      </div>
+      <label for="critical_improvement">Improvement</label>
+      <div id="critical_improvement">
+        <%= @evaluation.critical.improvement || "Wait for answer" %>
+      </div>
+    </div>
+  </div>
+  <button
+    phx-click="next"
+    class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold p-1 my-1"
+  >
+    Next
+  </button>
+  <div>
+    <.form for={@form} phx-change="edit_answer" phx-submit="submit">
+      <.input type="textarea" field={@form[:answer]} class="text-9xl" />
+      <button class="w-full bg-gray-700 hover:bg-gray-800 text-white p-1 font-bold">
+        Submit
+      </button>
+    </.form>
+  </div>
+</div>

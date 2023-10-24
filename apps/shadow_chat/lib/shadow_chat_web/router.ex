@@ -18,6 +18,7 @@ defmodule ShadowChatWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    live "/idioms", IdomsLive
   end
 
   # Other scopes may use custom stacks.

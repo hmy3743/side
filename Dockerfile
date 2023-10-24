@@ -27,6 +27,7 @@ RUN mix archive.install hex phx_new 1.7.2 --force
 COPY mix.exs mix.lock ./
 COPY apps/core/mix.exs ./apps/core/mix.exs
 COPY apps/lesson_web/mix.exs ./apps/lesson_web/mix.exs
+COPY apps/shadow_chat/mix.exs ./apps/shadow_chat/mix.exs
 RUN mix deps.get
 RUN mix deps.compile
 RUN mix compile
@@ -58,6 +59,7 @@ WORKDIR /app
 ARG RELEASE
 ARG MIX_ENV
 ENV MIX_ENV="${MIX_ENV}"
+ENV RELEASE="${RELEASE}"
 ENV PHX_SERVER="true"
 
 COPY --from=builder /app/_build/${MIX_ENV}/rel/${RELEASE} .
@@ -66,4 +68,4 @@ COPY --from=builder /app/_build/${MIX_ENV}/rel/${RELEASE} .
 EXPOSE 4000
 
 # Start the Phoenix app (adjust the command based on your actual entrypoint)
-CMD ["./bin/lesson", "start"]
+CMD ["./bin/$RELEASE", "start"]

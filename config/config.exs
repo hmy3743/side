@@ -84,4 +84,6 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :openai, http_options: [recv_timeout: 30_000]
+
 import_config "#{config_env()}.exs"

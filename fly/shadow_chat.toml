@@ -3,18 +3,12 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "side"
+app = "shadow-chat"
 primary_region = "nrt"
 
-[build]
-  dockerfile = "Dockerfile"
-
 [build.args]
-  RELEASE="lesson"
+  RELEASE="shadow_chat"
   MIX_ENV="prod"
-
-[deploy]
-  release_command = "./bin/lesson eval Core.Release.reset"
 
 [http_service]
   internal_port = 4000

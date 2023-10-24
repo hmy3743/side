@@ -112,4 +112,10 @@ if config_env() == :prod do
   #       force_ssl: [hsts: true]
   #
   # Check `Plug.SSL` for all available options in `force_ssl`.
+
+  config :openai,
+    api_key: System.get_env("OPENAI_API_KEY"),
+    organization_key: System.get_env("OPENAI_ORGANIZATION_KEY")
+
+  config :shadow_chat, quota: 100
 end

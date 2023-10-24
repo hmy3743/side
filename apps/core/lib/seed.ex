@@ -17,8 +17,8 @@ defmodule Seed do
     Core.Account.bulk_create!(@data, Lesson.JoiningRequest, :create)
   end
 
-  @external_resource Util.path_in_priv("seed/schedule.yml")
-  @data Util.read_data("seed/schedule.yml")
+  # @external_resource Util.path_in_priv("seed/schedule.yml")
+  # @data Util.read_data("seed/schedule.yml")
   defp seed_schedule() do
     # TODO
   end
