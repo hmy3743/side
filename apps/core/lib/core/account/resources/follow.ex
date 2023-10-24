@@ -5,7 +5,7 @@ defmodule Core.Account.Follow do
   actions do
     defaults [:create, :read, :destroy]
 
-    action :follow, __MODULE__ do
+    action :follow, :module do
       argument :follower_id, :uuid, allow_nil?: false
       argument :followee_id, :uuid, allow_nil?: false
 

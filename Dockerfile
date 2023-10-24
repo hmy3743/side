@@ -58,8 +58,8 @@ FROM ${RUNNER_IMAGE} as runner
 WORKDIR /app
 ARG RELEASE
 ARG MIX_ENV
-ENV MIX_ENV="${MIX_ENV}"
-ENV RELEASE="${RELEASE}"
+ENV MIX_ENV=${MIX_ENV}
+ENV RELEASE=${RELEASE}
 ENV PHX_SERVER="true"
 
 COPY --from=builder /app/_build/${MIX_ENV}/rel/${RELEASE} .
@@ -68,4 +68,10 @@ COPY --from=builder /app/_build/${MIX_ENV}/rel/${RELEASE} .
 EXPOSE 4000
 
 # Start the Phoenix app (adjust the command based on your actual entrypoint)
-CMD ["./bin/$RELEASE", "start"]
+CMD fallocate -l 512M /swapfile \
+  ;chmod 0600 /swapfile \
+  ;mkswap /swapfile \
+  ;echo 10 > /proc/sys/vm/swappiness \
+  ;swapon /swapfile \
+  ;echo 1 > /proc/sys/vm/overcommit_memory \
+  ;./bin/$RELEASE start

@@ -14,7 +14,7 @@ defmodule Core.SNS.FeedItem do
       change manage_relationship(:author_id, :author, type: :append_and_remove)
     end
 
-    action :publish, nil do
+    action :publish, :module do
       argument :text, :string, allow_nil?: false
       argument :author_id, :uuid, allow_nil?: false
       argument :expose_scope, :atom, allow_nil?: false, default: :public

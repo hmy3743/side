@@ -11,7 +11,7 @@ defmodule Side.MixProject do
           applications: [lesson_web: :permanent]
         ],
         shadow_chat: [
-          applications: [shadow_chat_web: :permanent]
+          applications: [shadow_chat: :permanent]
         ]
       ],
       deps: deps()
