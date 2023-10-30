@@ -1,5 +1,13 @@
-<header class="px-4 sm:px-6 lg:px-8 bg-pink-900">
-  <div class="text-2xl p-2 text-white">Verbose English</div>
+<header class="px-4 sm:px-6 lg:px-8 bg-pink-900 flex">
+  <div class="text-2xl p-2 text-white whitespace-nowrap">Verbose English</div>
+  <div class="w-full flex flex-row-reverse items-center">
+    <.link
+      patch={~p"/admin"}
+      class="text-sm p-2 bg-pink-600 hover:bg-pink-500 rounded text-white h-fit"
+    >
+       Admin 
+    </.link>
+  </div>
 </header>
 <main class="px-4 py-10 sm:py-20 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-4xl">
