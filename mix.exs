@@ -12,6 +12,9 @@ defmodule Side.MixProject do
         ],
         shadow_chat: [
           applications: [shadow_chat: :permanent]
+        ],
+        content_diary: [
+          applications: [content_diary: :permanent]
         ]
       ],
       deps: deps()

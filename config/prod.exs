@@ -13,7 +13,10 @@ config :lesson_web, LessonWeb.Endpoint,
   cache_static_manifest: "apps/lesson_web/priv/static/cache_manifest.json"
 
 config :shadow_chat, ShadowChatWeb.Endpoint,
-  cache_static_manifest: "apps/lesson_web/priv/static/cache_manifest.json"
+  cache_static_manifest: "apps/shadow_chat/priv/static/cache_manifest.json"
+
+config :content_diary, ContentDiaryWeb.Endpoint,
+  cache_static_manifest: "apps/content_diary/priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
 config :logger, level: :info

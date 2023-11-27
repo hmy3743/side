@@ -43,6 +43,19 @@ config :shadow_chat, ShadowChatWeb.Endpoint,
     tailwind: {Tailwind, :install_and_run, [:shadow_chat, ~w(--watch)]}
   ]
 
+config :content_diary, ContentDiaryWeb.Endpoint,
+  # Binding to loopback ipv4 address prevents access from other machines.
+  # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
+  http: [ip: {0, 0, 0, 0}, port: 4002],
+  check_origin: false,
+  code_reloader: true,
+  debug_errors: true,
+  secret_key_base: "t5jaW0IsgHjFCblrzaiL8ccbxyr2wQeJW1NznD/MKduw5faEppmasPGEvbgAaXQ7",
+  watchers: [
+    esbuild: {Esbuild, :install_and_run, [:content_diary, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:content_diary, ~w(--watch)]}
+  ]
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
@@ -86,9 +99,19 @@ config :shadow_chat, ShadowChatWeb.Endpoint,
     ]
   ]
 
+config :content_diary, ContentDiaryWeb.Endpoint,
+  live_reload: [
+    patterns: [
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/gettext/.*(po)$",
+      ~r"lib/content_diary_web/(controllers|live|components)/.*(ex|heex)$"
+    ]
+  ]
+
 # Enable dev routes for dashboard and mailbox
 config :lesson_web, dev_routes: true
 config :shadow_chat, dev_routes: true
+config :content_diary, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
