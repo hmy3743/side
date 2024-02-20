@@ -29,11 +29,12 @@ defmodule Core.MixProject do
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       # {:sibling_app_in_umbrella, in_umbrella: true}
-      {:ash, "~> 2.13.3"},
+      {:ash, ">= 0.0.0"},
       {:ash_authentication, ">= 0.0.0"},
       {:ash_postgres, ">= 0.0.0"},
       {:yaml_elixir, ">= 0.0.0"},
-      {:openai, ">= 0.0.0"}
+      {:openai, ">= 0.0.0"},
+      {:webauthn_components, ">= 0.0.0"}
     ]
   end
 end

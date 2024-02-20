@@ -40,6 +40,7 @@ if System.get_env("PHX_SERVER") do
   config :lesson_web, LessonWeb.Endpoint, server: true
   config :shadow_chat, ShadowChatWeb.Endpoint, server: true
   config :content_diary, ContentDiaryWeb.Endpoint, server: true
+  config :cona_web, ConaWeb.Endpoint, server: true
 end
 
 if config_env() == :prod do
@@ -83,6 +84,18 @@ if config_env() == :prod do
     secret_key_base: secret_key_base
 
   config :content_diary, ContentDiaryWeb.Endpoint,
+    url: [host: host, port: 443, scheme: "https"],
+    http: [
+      # Enable IPv6 and bind on all interfaces.
+      # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
+      # See the documentation on https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html
+      # for details about using IPv6 vs IPv4 and loopback vs public addresses.
+      ip: {0, 0, 0, 0, 0, 0, 0, 0},
+      port: port
+    ],
+    secret_key_base: secret_key_base
+
+  config :cona_web, ConaWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
     http: [
       # Enable IPv6 and bind on all interfaces.

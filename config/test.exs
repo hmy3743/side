@@ -14,6 +14,11 @@ config :lesson_web, LessonWeb.Endpoint,
   secret_key_base: "V181833Jbp2ZSeMhOlYdU+Re13WqMrrCqmu4cevXnOlzFecOIjy2DvhZaZt1jKey",
   server: false
 
+config :cona_web, ConaWeb.Endpoint,
+  http: [ip: {127, 0, 0, 1}, port: 4003],
+  secret_key_base: "8YdKz6Q/FRBRnIPObdmB/pMdcKIn1lOu4YBMQEsN3EfILKWuU+YaZNJMNrU2opJK",
+  server: false
+
 # Print only warnings and errors during test
 config :logger, level: :warning
 

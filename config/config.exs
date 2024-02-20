@@ -9,13 +9,6 @@
 # move said applications out of the umbrella.
 import Config
 
-# Sample configuration:
-#
-#     config :logger, :console,
-#       level: :info,
-#       format: "$date $time [$level] $metadata$message\n",
-#       metadata: [:user_id]
-#
 config :ash, :use_all_identities_in_manage_relationship?, false
 config :core, :ash_apis, [Core.SNS, Core.Account, Lesson]
 config :core, ecto_repos: [Core.Repo]
@@ -49,6 +42,16 @@ config :content_diary, ContentDiaryWeb.Endpoint,
   pubsub_server: ContentDiary.PubSub,
   live_view: [signing_salt: "GX/IE77G"]
 
+# Configures the endpoint
+config :cona_web, ConaWeb.Endpoint,
+  url: [host: "localhost"],
+  render_errors: [
+    formats: [html: ConaWeb.ErrorHTML, json: ConaWeb.ErrorJSON],
+    layout: false
+  ],
+  pubsub_server: ConaWeb.PubSub,
+  live_view: [signing_salt: "8ccC4nD7"]
+
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",
@@ -68,6 +71,12 @@ config :esbuild,
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../apps/content_diary/assets", __DIR__),
+    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ],
+  cona: [
+    args:
+      ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+    cd: Path.expand("../apps/cona_web/assets", __DIR__),
     env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
   ]
 
@@ -97,6 +106,14 @@ config :tailwind,
       --output=../priv/static/assets/app.css
     ),
     cd: Path.expand("../apps/content_diary/assets", __DIR__)
+  ],
+  cona: [
+    args: ~w(
+    --config=tailwind.config.js
+    --input=css/app.css
+    --output=../priv/static/assets/app.css
+  ),
+    cd: Path.expand("../apps/cona_web/assets", __DIR__)
   ]
 
 # Configures Elixir's Logger

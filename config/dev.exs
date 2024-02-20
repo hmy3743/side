@@ -56,6 +56,19 @@ config :content_diary, ContentDiaryWeb.Endpoint,
     tailwind: {Tailwind, :install_and_run, [:content_diary, ~w(--watch)]}
   ]
 
+config :cona_web, ConaWeb.Endpoint,
+  # Binding to loopback ipv4 address prevents access from other machines.
+  # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
+  http: [ip: {127, 0, 0, 1}, port: 4003],
+  check_origin: false,
+  code_reloader: true,
+  debug_errors: true,
+  secret_key_base: "MfjvvfzVh9nKk1mIvly+t13lCL5kDvLBYUuIPX+iimdqNw/OdE3xFIf0WdPwiXqJ",
+  watchers: [
+    esbuild: {Esbuild, :install_and_run, [:cona, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:cona, ~w(--watch)]}
+  ]
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
@@ -108,10 +121,20 @@ config :content_diary, ContentDiaryWeb.Endpoint,
     ]
   ]
 
+config :cona_web, ConaWeb.Endpoint,
+  live_reload: [
+    patterns: [
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/gettext/.*(po)$",
+      ~r"lib/cona_web/(controllers|live|components)/.*(ex|heex)$"
+    ]
+  ]
+
 # Enable dev routes for dashboard and mailbox
 config :lesson_web, dev_routes: true
 config :shadow_chat, dev_routes: true
 config :content_diary, dev_routes: true
+config :cona_web, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

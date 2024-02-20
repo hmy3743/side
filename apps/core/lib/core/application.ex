@@ -10,7 +10,9 @@ defmodule Core.Application do
     children = [
       # Starts a worker by calling: Core.Worker.start_link(arg)
       # {Core.Worker, arg}
-      Core.Repo
+      Core.Repo,
+      # Start the UserTokenCleaner
+      {Core.UserTokenCleaner, interval_minutes: 10}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
